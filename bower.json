@@ -1,0 +1,24 @@
+{
+  "name": "oam-site",
+  "version": "1.0.0",
+  "homepage": "https://github.com/winkerVSbecks/oam-site",
+  "authors": [
+    "Varun Vachhar <varunvachhar@gmail.com>"
+  ],
+  "keywords": [
+    "paper",
+    "js",
+    "seed"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper": "~0.9.22"
+  }
+}

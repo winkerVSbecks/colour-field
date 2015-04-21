@@ -1,0 +1,30 @@
+{
+  "name": "oam-site",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/winkerVSbecks/oam-site.git"
+  },
+  "keywords": [
+    "paper",
+    "js",
+    "seed"
+  ],
+  "author": "Varun Vachhar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/winkerVSbecks/oam-site/issues"
+  },
+  "homepage": "https://github.com/winkerVSbecks/oam-site",
+  "devDependencies": {
+    "colors": "^1.0.3",
+    "connect-livereload": "^0.5.3",
+    "gulp": "^3.8.11",
+    "gulp-connect": "^2.2.0",
+    "gulp-watch": "^4.2.4"
+  }
+}
