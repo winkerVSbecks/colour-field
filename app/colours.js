@@ -6,12 +6,13 @@ var colour = {};
 
 colour.list = {
   blue: '#a1c6e7',
-  yellow: '#ffedbf', //'#ffff7f',
+  paleYellow: '#ffedbf',
   orange: '#f8cca0',
   green: '#c2ce89',
   white: '#ffffff',
   pink: '#ff00ff',
   mauve: '#7f7fff',
+  yellow: '#ffff7f'
 };
 
 var pickRamdomColour = R.compose(function(array) {

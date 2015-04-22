@@ -30,6 +30,7 @@ generator.triangle = function(options) {
   var getTriangleProps = R.merge(triangle.build(options.size, options.type));
 
   var triangleDef = getTriangleProps(options);
+      triangleDef.closed = true;
 
   var p = new Path(triangleDef);
       p.position = view.center;
