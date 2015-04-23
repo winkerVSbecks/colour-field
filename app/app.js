@@ -62,6 +62,13 @@ function setup() {
     fillColor: colours.list.yellow,
     opacity: 0.5
   });
+
+  shapes.blob({
+    maxRadius: basis,
+    minRadius: basis * 0.75,
+    fillColor: colours.random(),
+    opacity: 0.5
+  });
 };
 
 
