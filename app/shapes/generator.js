@@ -1,3 +1,4 @@
+var paper = require('../../bower_components/paper/dist/paper-full.min.js');
 var R = require('ramda');
 var triangle = require('./triangle');
 var blob = require('./blob');
@@ -39,29 +40,29 @@ generator.triangle = function(options) {
       triangleDef.closed = true;
       triangleDef.strokeColor = options.fillColor;
 
-  var p = new Path(triangleDef);
-      p.position = view.center;
+  var p = new paper.Path(triangleDef);
+      p.position = paper.view.center;
   return p;
 };
 
 generator.rectangle = function(options) {
   options.strokeColor = options.fillColor;
-  var p = new Path.Rectangle(options)
-      p.position = view.center;
+  var p = new paper.Path.Rectangle(options)
+      p.position = paper.view.center;
   return p;
 };
 
 generator.circle = function(options) {
   options.strokeColor = options.fillColor;
-  var p = new Path.Circle(options)
-      p.position = view.center;
+  var p = new paper.Path.Circle(options)
+      p.position = paper.view.center;
   return p;
 };
 
 generator.blob = function(options) {
   options.strokeColor = options.fillColor;
   var p = blob.build(options);
-      p.position = view.center;
+      p.position = paper.view.center;
   return p;
 };
 
