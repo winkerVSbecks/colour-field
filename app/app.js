@@ -1,11 +1,9 @@
+var paper = require('../bower_components/paper/dist/paper-full.min.js');
 var shapes = require('./shapes/generator');
 var colours = require('./colours');
-var hitTest = require('./hit-test')
+var modifier = require('./modifier')
 var R = require('ramda');
 
-
-// Making the Paper scope global
-paper.install(window);
 
 var state = {};
 var w, h, basis;
@@ -14,10 +12,11 @@ var w, h, basis;
 window.onload = function() {
   paper.setup('js-oam-site');
 
-  var tool = new Tool();
-  tool.onMouseDown = hitTest.onMouseDown;
-  tool.onMouseMove = hitTest.onMouseMove;
-  tool.onMouseDrag = hitTest.onMouseDrag;
+  var tool = new paper.Tool();
+  tool.onMouseDown = modifier.onMouseDown;
+  tool.onMouseMove = modifier.onMouseMove;
+  tool.onMouseDrag = modifier.onMouseDrag;
+  tool.onDblClick = modifier.onDblClick;
 
   setup();
   paper.view.draw();
@@ -31,7 +30,7 @@ window.onload = function() {
 
 // Re-size
 window.onresize = function() {
-  project.clear();
+  paper.project.clear();
   setup();
 };
 
@@ -41,8 +40,8 @@ window.onresize = function() {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function setup() {
   // Canvas size
-  w = view.bounds.width;
-  h = view.bounds.height;
+  w = paper.view.bounds.width;
+  h = paper.view.bounds.height;
   basis = w * 0.125;
 
   shapes.rectangle({

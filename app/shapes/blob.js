@@ -1,3 +1,4 @@
+var paper = require('../../bower_components/paper/dist/paper-full.min.js');
 var R = require('ramda');
 
 /* Blob
@@ -8,11 +9,11 @@ var values = {
 };
 
 var createBlob = function(center, maxRadius, points, options) {
-  var path = new Path(options);
+  var path = new paper.Path(options);
       path.closed = true;
-console.log(center)
+
   for (var i = 0; i < points; i++) {
-    var delta = new Point({
+    var delta = new paper.Point({
       length: (maxRadius * 0.5) + (Math.random() * maxRadius * 0.5),
       angle: (360 / points) * i
     });
@@ -29,7 +30,7 @@ module.exports.build = function(options) {
 
   var radius = options.minRadius + Math.random() * radiusDelta;
   var points = values.minPoints + Math.floor(Math.random() * pointsDelta);
-  var path = createBlob(view.size.multiply(Point.random()), radius, points, options);
+  var path = createBlob(paper.view.size.multiply(paper.Point.random()), radius, points, options);
 
   return path;
 };

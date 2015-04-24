@@ -1,3 +1,4 @@
+var paper = require('../../bower_components/paper/dist/paper-full.min.js');
 var R = require('ramda');
 
 /* Triangle
