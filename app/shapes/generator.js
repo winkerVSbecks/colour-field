@@ -1,34 +1,28 @@
-var paper = require('../../bower_components/paper/dist/paper-full.min.js');
+var Path = require('../../bower_components/paper/dist/paper-full.js').Path;
 var R = require('ramda');
 var triangle = require('./triangle');
 var blob = require('./blob');
-var colours = require('../colours');
+var utils = require('../utils');
 
 /* Shape Generator
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-var randomNumber = function(minimum, maximum) {
-  return Math.round(Math.random() * (maximum - minimum) + minimum);
-};
-
-var types = ['triangle', 'rectangle', 'circle'];
-var defaults = {
-  triangle: {
-    size: randomNumber(10, 15),
-    opacity: 0.5
-  },
-  circle: {
-    radius: randomNumber(10, 15),
-    opacity: 0.5
-  },
-  rectangle: {
-    size: randomNumber(10, 15),
-    opacity: 0.75
-  },
-  blob: {
-    maxRadius: randomNumber(10, 15),
-    minRadius: randomNumber(5, 10),
-    opacity: 0.75
-  }
+var types = ['triangle', 'rectangle', 'circle', 'blob'];
+var defaults = function() {
+  return {
+    triangle: {
+      size: 10 * utils.randomNumber(10, 15)
+    },
+    circle: {
+      radius: 10 * utils.randomNumber(10, 15)
+    },
+    rectangle: {
+      size: 10 * utils.randomNumber(10, 15)
+    },
+    blob: {
+      maxRadius: 10 * utils.randomNumber(10, 15),
+      minRadius: 10 * utils.randomNumber(5, 10)
+    }
+  };
 };
 
 var generator = {};
@@ -38,38 +32,28 @@ generator.triangle = function(options) {
 
   var triangleDef = getTriangleProps(options);
       triangleDef.closed = true;
-      triangleDef.strokeColor = options.fillColor;
 
-  var p = new paper.Path(triangleDef);
-      p.position = paper.view.center;
-  return p;
+  return new Path(triangleDef);
 };
 
 generator.rectangle = function(options) {
-  options.strokeColor = options.fillColor;
-  var p = new paper.Path.Rectangle(options)
-      p.position = paper.view.center;
-  return p;
+  return new Path.Rectangle(options);
 };
 
 generator.circle = function(options) {
-  options.strokeColor = options.fillColor;
-  var p = new paper.Path.Circle(options)
-      p.position = paper.view.center;
-  return p;
+  return new Path.Circle(options);
 };
 
 generator.blob = function(options) {
-  options.strokeColor = options.fillColor;
-  var p = blob.build(options);
-      p.position = paper.view.center;
-  return p;
+  var p = new Path();
+      p.closed = true;
+  return blob.build(p, options);
 };
 
-generator.random = function() {
+generator.random = function(fillColor) {
   var type = types[Math.floor(Math.random() * types.length)];
-  var def = defaults[type];
-  def.fillColor = colours.random();
+  var def = defaults()[type];
+
   return generator[type](def);
 };
 

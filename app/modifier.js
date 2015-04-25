@@ -1,4 +1,4 @@
-var paper = require('../bower_components/paper/dist/paper-full.min.js');
+var P = require('../bower_components/paper/dist/paper-full.js');
 
 /* Modify the shapes
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -14,7 +14,7 @@ var movePath = false;
 
 module.exports.onMouseDown = function(event) {
   segment = path = null;
-  var hitResult = paper.project.hitTest(event.point, hitOptions);
+  var hitResult = P.project.hitTest(event.point, hitOptions);
 
   if (!hitResult) {
     return;
@@ -46,12 +46,12 @@ module.exports.onMouseDown = function(event) {
   movePath = hitResult.type === 'fill';
 
   if (movePath) {
-    paper.project.activeLayer.addChild(hitResult.item);
+    P.project.activeLayer.addChild(hitResult.item);
   }
 };
 
 module.exports.onMouseMove = function(event) {
-  paper.project.activeLayer.selected = false;
+  P.project.activeLayer.selected = false;
 
   if (event.item) {
     event.item.selected = true;
